@@ -1,2 +1,2 @@
 # ITAssFlask
-IT class Flask Ass
+IT class Flask Assignment
