@@ -39,15 +39,18 @@ def main():
     @app.route('/', methods=["POST"])
     def on_name_entered():
         text = request.form['text']
-        # if text is not empty, add it to the DB
-        if text:
+        # if text is not empty, and is one word, add it to the DB
+        if (text) and len(text.split()) == 1:
             new_person = Person(text)
             db_session.add(new_person)
+            # (don't?) handle some issues
             try:
                 db_session.commit()
                 return "You have successfully entered your name, was it recieved properly? idk"
             except(Exception):
                 return repr(Exception)
+        else:
+            return "Something was off about your input (possibly spaces), reenter the url and try again"
 
 # idk about my other practices but I think this one is good
 if __name__ == "__main__":
